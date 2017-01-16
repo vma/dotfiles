@@ -1,0 +1,31 @@
+colorscheme desert
+
+set tabstop=4
+set shiftwidth=4
+
+set textwidth=0 wrapmargin=0
+set nowrap
+set wrapscan
+
+set ignorecase
+set shiftround
+set expandtab
+set vb
+
+filetype plugin indent on
+syntax enable
+syntax on
+
+set ch=1
+
+set showmatch
+set nohls
+set ruler
+set incsearch
+set bs=2
+
+set background=dark
+set list listchars=tab:>-,trail:.
+set nocompatible
+
+autocmd BufRead,BufNewFile iptables.conf set syntax=iptables
