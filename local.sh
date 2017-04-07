@@ -3,9 +3,12 @@
 export LC_ALL=C
 export LANG=C
 export LC_TYPE=C
+
 export EDITOR=vim
+export TERM=xterm
 
 alias e='vim'
+alias r='view'
 
 if [[ ${EUID} == 0 ]] ; then
     # color prompt for root
@@ -13,3 +16,17 @@ if [[ ${EUID} == 0 ]] ; then
 else
     export PS1='\u@\h:\w\$ '
 fi
+
+# grep paragraph
+pargrep() {
+    case "$#" in
+        1)
+            awk -v RS='' -v ORS="\n\n" "/$1/"
+            ;;
+        2)
+            awk -v RS='' -v ORS="\n\n" "/$1/" "$2"
+            ;;
+        *)
+            echo "usage: pargrep regex [file]"
+    esac
+}
