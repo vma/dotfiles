@@ -1,11 +1,17 @@
-#!/bin/bash
+#!/bin/sh
 
+export LANGUAGE=C
 export LC_ALL=C
+export LC_CTYPE=C
 export LANG=C
-export LC_TYPE=C
-
 export EDITOR=vim
-export TERM=xterm
+export TERM=xterm-256color
+
+export LS_OPTIONS='--color=auto'
+eval "`dircolors`"
+alias ls='ls $LS_OPTIONS'
+alias ll='ls $LS_OPTIONS -l'
+alias l='ls $LS_OPTIONS -lA'
 
 alias e='vim'
 alias r='view'
@@ -16,6 +22,9 @@ if [[ ${EUID} == 0 ]] ; then
 else
     export PS1='\u@\h:\w\$ '
 fi
+
+export GOPATH=/opt/gowspace
+export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 
 # grep paragraph
 pargrep() {
