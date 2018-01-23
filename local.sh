@@ -6,6 +6,7 @@ export LC_CTYPE=C
 export LANG=C
 export EDITOR=vim
 export TERM=xterm-256color
+export LESS="-XFR"
 
 export LS_OPTIONS='--color=auto'
 eval "`dircolors`"
@@ -15,7 +16,7 @@ alias l='ls $LS_OPTIONS -lA'
 
 alias e='vim'
 alias r='view'
-alias ag="ag --pager 'less -R'"
+alias ag="ag --pager less"
 
 if [[ ${EUID} == 0 ]] ; then
     # color prompt for root
