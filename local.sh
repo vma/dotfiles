@@ -15,6 +15,7 @@ alias l='ls $LS_OPTIONS -lA'
 
 alias e='vim'
 alias r='view'
+alias ag="ag --pager 'less -R'"
 
 if [[ ${EUID} == 0 ]] ; then
     # color prompt for root
