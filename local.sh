@@ -17,6 +17,7 @@ alias l='ls $LS_OPTIONS -lA'
 alias e='vim'
 alias r='view'
 alias ag="ag --pager less"
+alias ngrep='ngrep -qt -W byline'
 
 if [[ ${EUID} == 0 ]] ; then
     # color prompt for root
@@ -30,14 +31,20 @@ export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 
 # grep paragraph
 pargrep() {
+    invert=false
+    if [ "$1" = "-v" ] ; then
+        invert=true
+        shift
+    fi
     case "$#" in
         1)
-            awk -v RS='' -v ORS="\n\n" "/$1/"
+            [ $invert = false ] && awk -v RS='' -v ORS="\n\n" "/$1/" || awk -v RS='' -v ORS="\n\n" "!/$1/"
             ;;
         2)
+            [ $invert = false ] && awk -v RS='' -v ORS="\n\n" "/$1/" "$2" || awk -v RS='' -v ORS="\n\n" "!/$1/" "$2"
             awk -v RS='' -v ORS="\n\n" "/$1/" "$2"
             ;;
         *)
-            echo "usage: pargrep regex [file]"
+            echo "usage: pargrep [ -v ] regex [ file ]"
     esac
 }
